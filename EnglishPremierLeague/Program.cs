@@ -22,6 +22,7 @@ namespace EnglishPremierLeague
             .CreateLogger<Program>();
             logger.LogDebug("Starting application");
 
+
             var bar = serviceProvider.GetService<ITestInterface>();
             bar.TestMethod();
 
