@@ -1,0 +1,15 @@
+﻿Compulsary ground rules
+1. Console application
+2. Code should be structured
+3. Naming conventions should be followed
+4. Add any helper code if used
+
+
+Choice of Coding Techniques
+1. Follow SOLID principles
+2. Code should be testable - following TDD
+
+Assumptions
+1. No database to be used
+2. Data can be huge
+

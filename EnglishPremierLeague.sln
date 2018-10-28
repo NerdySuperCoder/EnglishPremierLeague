@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishPremierLeague", "EnglishPremierLeague\EnglishPremierLeague.csproj", "{D9C05011-4E27-4993-A10A-69ED86506B0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishPremierLeague.Tests", "EnglishPremierLeague.Tests\EnglishPremierLeague.Tests.csproj", "{87649A20-FBBD-426E-BAAD-277E1DD9E02F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D9C05011-4E27-4993-A10A-69ED86506B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9C05011-4E27-4993-A10A-69ED86506B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9C05011-4E27-4993-A10A-69ED86506B0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87649A20-FBBD-426E-BAAD-277E1DD9E02F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87649A20-FBBD-426E-BAAD-277E1DD9E02F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87649A20-FBBD-426E-BAAD-277E1DD9E02F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87649A20-FBBD-426E-BAAD-277E1DD9E02F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
