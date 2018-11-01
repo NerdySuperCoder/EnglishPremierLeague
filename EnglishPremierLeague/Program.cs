@@ -12,26 +12,29 @@ namespace EnglishPremierLeague
     {
         static void Main(string[] args)
         {
-   //         var serviceProvider = new ServiceCollection()
-   //             .AddSingleton<ITestInterface, TestClass>()
-   //             .AddSingleton<ILoggerFactory, LoggerFactory>()
-   //             .AddSingleton(typeof(ILogger<>), typeof(Logger<>))
-   //             .BuildServiceProvider();
+			//         var serviceProvider = new ServiceCollection()
+			//             .AddSingleton<ITestInterface, TestClass>()
+			//             .AddSingleton<ILoggerFactory, LoggerFactory>()
+			//             .AddSingleton(typeof(ILogger<>), typeof(Logger<>))
+			//             .BuildServiceProvider();
 
 
 			//serviceProvider.GetService<ILoggerFactory>().AddConsole(LogLevel.Debug);//.AddDebug();
 
-   //         var logger = serviceProvider.GetService<ILoggerFactory>()
-   //         .CreateLogger<Program>();
-   //         logger.LogDebug("Starting application");
+			//         var logger = serviceProvider.GetService<ILoggerFactory>()
+			//         .CreateLogger<Program>();
+			//         logger.LogDebug("Starting application");
 
 
-   //         var bar = serviceProvider.GetService<ITestInterface>();
-   //         bar.TestMethod();
+			//         var bar = serviceProvider.GetService<ITestInterface>();
+			//         bar.TestMethod();
 
-   //         logger.LogDebug("All done!");
+			//         logger.LogDebug("All done!");
 
-   //         Console.ReadLine();
+			//         Console.ReadLine();
+
+			var filePath = @"C:\Users\ElaRaji\OneDrive\Personal\GitHub\EnglishPremierLeague\EnglishPremierLeague\Resources\football.csv";
+
 			
 			var csvDataProvider = new ServiceCollection()
 				.AddSingleton<IDataAdapter, CSVAdapter>()
@@ -45,8 +48,8 @@ namespace EnglishPremierLeague
 				.AddSingleton(typeof(ILogger<>), typeof(Logger<>))
 				.BuildServiceProvider();
 
-			var testCSV = csvDataProvider.GetService<IDataAdapter>().GetTeamStandings();
-			var testDAT = datDataProvider.GetService<IDataAdapter>().GetTeamStandings();
+			var testCSV = csvDataProvider.GetService<IDataAdapter>().GetData(filePath);
+			var testDAT = datDataProvider.GetService<IDataAdapter>().GetData(filePath);
 
 		}
 

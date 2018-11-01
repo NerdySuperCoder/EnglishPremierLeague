@@ -10,6 +10,6 @@ namespace EnglishPremierLeague.DataAdapters
 	/// </summary>
 	public interface IDataAdapter
 	{
-		DataTable GetTeamStandings();
+		DataTable GetData(string FilePath);
 	}
 }

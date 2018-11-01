@@ -7,7 +7,7 @@ namespace EnglishPremierLeague.DataAdapters.DATAdapter
 {
 	public class DATAdapter : DataAdapter
 	{
-		public override DataTable GetTeamStandings()
+		public override DataTable GetData(string FilePath)
 		{
 			throw new NotImplementedException();
 		}

@@ -5,6 +5,6 @@ namespace EnglishPremierLeague.DataAdapters
 {
 	public abstract class DataAdapter : IDataAdapter
 	{
-		public abstract DataTable GetTeamStandings();		
+		public abstract DataTable GetData(string FilePath);		
 	}
 }

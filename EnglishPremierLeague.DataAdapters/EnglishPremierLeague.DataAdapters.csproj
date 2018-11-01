@@ -4,4 +4,15 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Parsers\CSVParser\" />
+    <Folder Include="Parsers\DATParser\" />
+    <Folder Include="Validators\CSVValidator\" />
+    <Folder Include="Validators\DATValidator\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EnglishPremierLeague.Common\EnglishPremierLeague.Common.csproj" />
+  </ItemGroup>
+
 </Project>
