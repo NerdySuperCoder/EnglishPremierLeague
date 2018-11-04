@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 using EnglishPremierLeague.Common.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace EnglishPremierLeague.BusinessServices.Validators
 {
-	class BusinessValidator : IBusinessValidator
+	public class BusinessValidator : IBusinessValidator
 	{
+		private readonly ILogger<BusinessValidator> _logger;
+
+		public BusinessValidator(ILoggerFactory loggerFactory)
+		{
+			_logger = loggerFactory.CreateLogger<BusinessValidator>();
+		}
+
 		public bool Validate(IEnumerable<Team> teamData, out List<Team> validTeams, bool ignoreInvalidData = true)
 		{
 			bool isValid = false;
@@ -33,7 +41,7 @@ namespace EnglishPremierLeague.BusinessServices.Validators
 		public bool ValidatePoints(Team team)
 		{
 			return team.Points == (
-					(team.NumberOfGoalsScored * 3) +
+					(team.NumberOfWins * 3) +
 					(team.NumberOfDraws * 1)
 					);
 
@@ -42,7 +50,7 @@ namespace EnglishPremierLeague.BusinessServices.Validators
 		public bool ValidateMatches(Team team)
 		{
 			return team.NumberOfPlayed == (
-				team.NumberOfPlayed +
+				team.NumberOfWins +
 				team.NumberOfLosses +
 				team.NumberOfDraws
 				);

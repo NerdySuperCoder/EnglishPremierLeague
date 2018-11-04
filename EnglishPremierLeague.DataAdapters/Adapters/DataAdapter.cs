@@ -8,6 +8,6 @@ namespace EnglishPremierLeague.Data.Adapters
 {
 	public abstract class DataAdapter : IDataAdapter
 	{
-		public abstract IEnumerable<Team> GetData(string FilePath, bool containsHeaderRow);
+		public abstract IEnumerable<Team> GetRepository(string FilePath, bool containsHeaderRow);
 	}
 }

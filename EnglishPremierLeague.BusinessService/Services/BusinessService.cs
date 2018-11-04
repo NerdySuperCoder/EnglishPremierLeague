@@ -1,5 +1,6 @@
 ﻿using EnglishPremierLeague.BusinessServices.Validators;
 using EnglishPremierLeague.Common.Entities;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,22 +10,41 @@ namespace EnglishPremierLeague.BusinessServices.Services
 {
 	public class BusinessService : IBusinessService
 	{
-		public List<Team> Teams
+		private readonly IBusinessValidator _businessValidator;
+		private readonly ILogger<BusinessService> _logger;
+
+		private IEnumerable<Team> _teams;
+
+		public List<Team> ValidTeams
 		{
 			get
 			{
 				return validatedTeams;
 			}
 		}
-		public IBusinessValidator BusinessValidator { get; set; }
+		//public IBusinessValidator BusinessValidator { get; set; }
 		private List<Team> validatedTeams;
 
-		public BusinessService(IEnumerable<Team> teams)
+		//public BusinessService(IEnumerable<Team> teams)
+		//{
+		//	validatedTeams = new List<Team>();
+		//	BusinessValidator = new BusinessValidator();
+		//	BusinessValidator.Validate(teams, out validatedTeams);
+		//}
+
+		public BusinessService(IBusinessValidator businessValidator, ILoggerFactory loggerFactory)
 		{
-			validatedTeams = new List<Team>();
-			BusinessValidator = new BusinessValidator();
-			BusinessValidator.Validate(teams, out validatedTeams);
+			_businessValidator = businessValidator;
+			_logger = loggerFactory.CreateLogger<BusinessService>();
 		}
+
+		public void SetRepository(IEnumerable<Team> teams)
+		{
+			_teams = teams;
+			_businessValidator.Validate(_teams, out validatedTeams);
+		}
+
+		
 
 		public string GetTeamLeader()
 		{
@@ -33,7 +53,7 @@ namespace EnglishPremierLeague.BusinessServices.Services
 
 		public Team GetTeamWithLowDifferenceInGoals()
 		{
-			return Teams.OrderByDescending(t => t.GoalDifference).FirstOrDefault();
+			return ValidTeams.OrderBy(t => t.GoalDifference).FirstOrDefault();
 		}
 	}
 }

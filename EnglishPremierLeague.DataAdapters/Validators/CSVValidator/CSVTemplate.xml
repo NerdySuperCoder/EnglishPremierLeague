@@ -22,18 +22,18 @@
 		<PropertyName>NumberOfWins</PropertyName>
 	</Column>
 	<Column>
-		<Name>L</Name>
-		<Type>System.Int32</Type>
-		<Mandatory>true</Mandatory>
-		<Index>4</Index>
-		<PropertyName>NumberOfLosses</PropertyName>
-	</Column>
-	<Column>
 		<Name>D</Name>
 		<Type>System.Int32</Type>
 		<Mandatory>true</Mandatory>
-		<Index>5</Index>
+		<Index>4</Index>
 		<PropertyName>NumberOfDraws</PropertyName>
+	</Column>
+	<Column>
+		<Name>L</Name>
+		<Type>System.Int32</Type>
+		<Mandatory>true</Mandatory>
+		<Index>5</Index>
+		<PropertyName>NumberOfLosses</PropertyName>
 	</Column>
 	<Column>
 		<Name>F</Name>

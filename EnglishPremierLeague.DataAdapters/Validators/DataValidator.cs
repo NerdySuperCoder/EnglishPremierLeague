@@ -12,9 +12,19 @@ namespace EnglishPremierLeague.Data.Adapters.Validators
 
 		public bool ValidateColumnType(string data, Type dataType, out object convertedValue)
 		{
-			var converter = TypeDescriptor.GetConverter(dataType);
-			convertedValue = converter.ConvertFrom(data);
+			convertedValue = null;
+			try
+			{
+				var converter = TypeDescriptor.GetConverter(dataType);
+				if(converter!= null)
+					convertedValue = converter.ConvertFrom(data);
 
+				
+			}
+			catch (Exception ex)
+			{
+				//Log the value is not converted
+			}
 			return convertedValue != null;
 		}
 

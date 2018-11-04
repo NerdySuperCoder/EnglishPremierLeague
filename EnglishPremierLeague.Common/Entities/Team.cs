@@ -13,11 +13,11 @@ namespace EnglishPremierLeague.Common.Entities
 		public int NumberOfGoalsScoredAgainst { get; set; }
 		public int Points { get; set; }
 
-		public UInt32 GoalDifference
+		public int GoalDifference
 		{
 			get
 			{
-				return Convert.ToUInt32((NumberOfGoalsScored - NumberOfGoalsScoredAgainst));
+				return Math.Abs(NumberOfGoalsScored - NumberOfGoalsScoredAgainst);
 			}
 		}
 	}

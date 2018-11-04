@@ -5,6 +5,11 @@ using EnglishPremierLeague.Data.Adapters;
 using EnglishPremierLeague.Data.Adapters.CSVAdapter;
 using EnglishPremierLeague.Data.Adapters.DATAdapter;
 using EnglishPremierLeague.BusinessServices.Services;
+using EnglishPremierLeague.Data.Adapters.Parsers;
+using EnglishPremierLeague.Data.Adapters.Parsers.CSVParser;
+using EnglishPremierLeague.Data.Adapters.Validators;
+using EnglishPremierLeague.Data.Adapters.Validators.CSVValidator;
+using EnglishPremierLeague.BusinessServices.Validators;
 
 namespace EnglishPremierLeague
 {
@@ -35,12 +40,23 @@ namespace EnglishPremierLeague
 
 			var filePath = @"C:\Users\ElaRaji\OneDrive\Personal\GitHub\EnglishPremierLeague\EnglishPremierLeague\Resources\football.csv";
 
-			
-			var csvDataProvider = new ServiceCollection()
+			//Setting Up Dependency Injection
+			var csvServiceProvider = new ServiceCollection()
 				.AddSingleton<IDataAdapter, CSVAdapter>()
+				.AddSingleton<IParser, CSVParser>()
+				.AddSingleton<IValidator, CSVValidator>()
 				.AddSingleton<ILoggerFactory, LoggerFactory>()
 				.AddSingleton(typeof(ILogger<>), typeof(Logger<>))
+				.AddSingleton<IBusinessService, BusinessService>()
+				.AddSingleton<IBusinessValidator, BusinessValidator>()
+				
 				.BuildServiceProvider();
+
+			//Setting the logging
+			csvServiceProvider.GetService<ILoggerFactory>().AddConsole(LogLevel.Debug);
+			var logger = csvServiceProvider.GetService<ILoggerFactory>().CreateLogger<Program>();
+
+			logger.LogDebug("Starting the console application");
 
 			var datDataProvider = new ServiceCollection()
 				.AddSingleton<IDataAdapter, DATAdapter>()
@@ -48,11 +64,16 @@ namespace EnglishPremierLeague
 				.AddSingleton(typeof(ILogger<>), typeof(Logger<>))
 				.BuildServiceProvider();
 
-			var testCSV = csvDataProvider.GetService<IDataAdapter>().GetData(filePath);
+			var csvRepository = csvServiceProvider.GetService<IDataAdapter>().GetRepository(filePath);
 
-			IBusinessService service = new BusinessServices.Services.BusinessService(testCSV);
-			var team = service.GetTeamWithLowDifferenceInGoals();
-		
+			var businessService = csvServiceProvider.GetService<IBusinessService>();
+			businessService.SetRepository(csvRepository);
+			
+			var team = businessService.GetTeamWithLowDifferenceInGoals();
+
+
+			Console.WriteLine(team.TeamName);
+			Console.ReadLine();
 			//var testDAT = datDataProvider.GetService<IDataAdapter>().GetData(filePath);
 
 

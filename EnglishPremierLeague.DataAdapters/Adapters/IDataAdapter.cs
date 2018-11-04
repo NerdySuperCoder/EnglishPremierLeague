@@ -11,6 +11,6 @@ namespace EnglishPremierLeague.Data.Adapters
 	/// </summary>
 	public interface IDataAdapter
 	{
-		IEnumerable<Team> GetData(string FilePath, bool containsHeaderRow= true);
+		IEnumerable<Team> GetRepository(string FilePath, bool containsHeaderRow= true);
 	}
 }
