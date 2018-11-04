@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using EnglishPremierLeague.Common;
-using EnglishPremierLeague.DataAdapters.Validators;
-using EnglishPremierLeague.DataAdapters.Validators.CSVValidator;
+using EnglishPremierLeague.Common.Entities;
+using EnglishPremierLeague.Data.Adapters.Validators;
+using EnglishPremierLeague.Data.Adapters.Validators.CSVValidator;
 
-namespace EnglishPremierLeague.DataAdapters.Parsers.CSVParser
+namespace EnglishPremierLeague.Data.Adapters.Parsers.CSVParser
 {
 	public class CSVParser : IParser
 	{

@@ -1,13 +1,13 @@
-﻿using EnglishPremierLeague.Common;
-using EnglishPremierLeague.DataAdapters.Parsers;
-using EnglishPremierLeague.DataAdapters.Parsers.CSVParser;
+﻿using EnglishPremierLeague.Common.Entities;
+using EnglishPremierLeague.Data.Adapters.Parsers;
+using EnglishPremierLeague.Data.Adapters.Parsers.CSVParser;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
 
-namespace EnglishPremierLeague.DataAdapters.CSVAdapter
+namespace EnglishPremierLeague.Data.Adapters.CSVAdapter
 {
 	public class CSVAdapter : DataAdapter
 	{

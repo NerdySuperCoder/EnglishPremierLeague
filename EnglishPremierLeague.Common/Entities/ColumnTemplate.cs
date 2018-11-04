@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EnglishPremierLeague.Common
+namespace EnglishPremierLeague.Common.Entities
 { 
 
 	[Serializable]

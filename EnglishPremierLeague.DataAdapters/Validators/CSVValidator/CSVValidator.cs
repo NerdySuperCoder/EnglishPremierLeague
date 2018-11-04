@@ -1,11 +1,11 @@
-﻿using EnglishPremierLeague.Common;
+﻿using EnglishPremierLeague.Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace EnglishPremierLeague.DataAdapters.Validators.CSVValidator
+namespace EnglishPremierLeague.Data.Adapters.Validators.CSVValidator
 {
 	
 

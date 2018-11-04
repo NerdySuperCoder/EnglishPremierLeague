@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EnglishPremierLeague.Common
+namespace EnglishPremierLeague.Common.Entities
 {
 	public class Team
 	{

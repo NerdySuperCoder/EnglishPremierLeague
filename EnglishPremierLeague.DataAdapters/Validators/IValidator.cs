@@ -1,9 +1,9 @@
-﻿using EnglishPremierLeague.Common;
+﻿using EnglishPremierLeague.Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EnglishPremierLeague.DataAdapters.Validators
+namespace EnglishPremierLeague.Data.Adapters.Validators
 {
 	public interface IValidator
 	{

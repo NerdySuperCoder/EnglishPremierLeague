@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
-using EnglishPremierLeague.Common;
+using EnglishPremierLeague.Common.Entities;
 
-namespace EnglishPremierLeague.DataAdapters.Validators
+namespace EnglishPremierLeague.Data.Adapters.Validators
 {
 	public abstract class DataValidator : IValidator
 	{

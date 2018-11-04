@@ -1,10 +1,10 @@
-﻿using EnglishPremierLeague.Common;
+﻿using EnglishPremierLeague.Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 
-namespace EnglishPremierLeague.DataAdapters
+namespace EnglishPremierLeague.Data.Adapters
 {
 	public abstract class DataAdapter : IDataAdapter
 	{

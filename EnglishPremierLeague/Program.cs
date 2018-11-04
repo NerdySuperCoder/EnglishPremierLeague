@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using EnglishPremierLeague.DataAdapters;
-using EnglishPremierLeague.DataAdapters.CSVAdapter;
-using EnglishPremierLeague.DataAdapters.DATAdapter;
+using EnglishPremierLeague.Data.Adapters;
+using EnglishPremierLeague.Data.Adapters.CSVAdapter;
+using EnglishPremierLeague.Data.Adapters.DATAdapter;
 
 
 namespace EnglishPremierLeague
@@ -49,7 +49,9 @@ namespace EnglishPremierLeague
 				.BuildServiceProvider();
 
 			var testCSV = csvDataProvider.GetService<IDataAdapter>().GetData(filePath);
-			var testDAT = datDataProvider.GetService<IDataAdapter>().GetData(filePath);
+			//var testDAT = datDataProvider.GetService<IDataAdapter>().GetData(filePath);
+
+
 
 		}
 

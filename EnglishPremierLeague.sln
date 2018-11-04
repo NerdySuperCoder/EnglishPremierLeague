@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishPremierLeague.Consol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishPremierLeague.Tests", "EnglishPremierLeague.Tests\EnglishPremierLeague.Tests.csproj", "{87649A20-FBBD-426E-BAAD-277E1DD9E02F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishPremierLeague.DataAdapters", "EnglishPremierLeague.DataAdapters\EnglishPremierLeague.DataAdapters.csproj", "{369CA78A-872F-4D40-BB78-631F393A03D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishPremierLeague.Data", "EnglishPremierLeague.DataAdapters\EnglishPremierLeague.Data.csproj", "{369CA78A-872F-4D40-BB78-631F393A03D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishPremierLeague.BusinessService", "EnglishPremierLeague.BusinessService\EnglishPremierLeague.BusinessService.csproj", "{7AB73581-E339-456B-AABA-E8375182F11F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishPremierLeague.BusinessService", "EnglishPremierLeague.BusinessService\EnglishPremierLeague.BusinessService.csproj", "{7AB73581-E339-456B-AABA-E8375182F11F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishPremierLeague.Common", "EnglishPremierLeague.Common\EnglishPremierLeague.Common.csproj", "{CB3124D2-8DA1-4FB4-8B27-632251E40887}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishPremierLeague.Common", "EnglishPremierLeague.Common\EnglishPremierLeague.Common.csproj", "{CB3124D2-8DA1-4FB4-8B27-632251E40887}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
