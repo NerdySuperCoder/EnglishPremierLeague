@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishPremierLeague.Tests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishPremierLeague.Data", "EnglishPremierLeague.DataAdapters\EnglishPremierLeague.Data.csproj", "{369CA78A-872F-4D40-BB78-631F393A03D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishPremierLeague.BusinessService", "EnglishPremierLeague.BusinessService\EnglishPremierLeague.BusinessService.csproj", "{7AB73581-E339-456B-AABA-E8375182F11F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishPremierLeague.BusinessServices", "EnglishPremierLeague.BusinessService\EnglishPremierLeague.BusinessServices.csproj", "{7AB73581-E339-456B-AABA-E8375182F11F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnglishPremierLeague.Common", "EnglishPremierLeague.Common\EnglishPremierLeague.Common.csproj", "{CB3124D2-8DA1-4FB4-8B27-632251E40887}"
 EndProject

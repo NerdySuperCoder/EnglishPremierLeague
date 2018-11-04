@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EnglishPremierLeague.BusinessService\EnglishPremierLeague.BusinessServices.csproj" />
     <ProjectReference Include="..\EnglishPremierLeague.DataAdapters\EnglishPremierLeague.Data.csproj" />
   </ItemGroup>
 

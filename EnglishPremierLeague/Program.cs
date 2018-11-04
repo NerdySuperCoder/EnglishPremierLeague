@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using EnglishPremierLeague.Data.Adapters;
 using EnglishPremierLeague.Data.Adapters.CSVAdapter;
 using EnglishPremierLeague.Data.Adapters.DATAdapter;
-
+using EnglishPremierLeague.BusinessServices.Services;
 
 namespace EnglishPremierLeague
 {
@@ -49,6 +49,10 @@ namespace EnglishPremierLeague
 				.BuildServiceProvider();
 
 			var testCSV = csvDataProvider.GetService<IDataAdapter>().GetData(filePath);
+
+			IBusinessService service = new BusinessServices.Services.BusinessService(testCSV);
+			var team = service.GetTeamWithLowDifferenceInGoals();
+		
 			//var testDAT = datDataProvider.GetService<IDataAdapter>().GetData(filePath);
 
 
