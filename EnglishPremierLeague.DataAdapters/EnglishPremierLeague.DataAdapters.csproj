@@ -5,14 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Parsers\CSVParser\" />
     <Folder Include="Parsers\DATParser\" />
-    <Folder Include="Validators\CSVValidator\" />
     <Folder Include="Validators\DATValidator\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EnglishPremierLeague.Common\EnglishPremierLeague.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Validators\CSVValidator\CSVTemplate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

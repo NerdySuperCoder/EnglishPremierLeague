@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnglishPremierLeague.Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
@@ -10,6 +11,6 @@ namespace EnglishPremierLeague.DataAdapters
 	/// </summary>
 	public interface IDataAdapter
 	{
-		DataTable GetData(string FilePath);
+		IEnumerable<Team> GetData(string FilePath, bool containsHeaderRow= true);
 	}
 }
