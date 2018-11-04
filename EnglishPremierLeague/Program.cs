@@ -17,26 +17,8 @@ namespace EnglishPremierLeague
     {
         static void Main(string[] args)
         {
-			//         var serviceProvider = new ServiceCollection()
-			//             .AddSingleton<ITestInterface, TestClass>()
-			//             .AddSingleton<ILoggerFactory, LoggerFactory>()
-			//             .AddSingleton(typeof(ILogger<>), typeof(Logger<>))
-			//             .BuildServiceProvider();
-
-
-			//serviceProvider.GetService<ILoggerFactory>().AddConsole(LogLevel.Debug);//.AddDebug();
-
-			//         var logger = serviceProvider.GetService<ILoggerFactory>()
-			//         .CreateLogger<Program>();
-			//         logger.LogDebug("Starting application");
-
-
-			//         var bar = serviceProvider.GetService<ITestInterface>();
-			//         bar.TestMethod();
-
-			//         logger.LogDebug("All done!");
-
-			//         Console.ReadLine();
+			//commandline call
+			//dotnet EnglishPremierLeague.dll [-csv|-dat] -filepath <filepath.csv| filepath.dat> -headerrow [true|false] -csvtemplate <filename.xml> -loglevel [debug|trace]
 
 			var filePath = @"C:\Users\ElaRaji\OneDrive\Personal\GitHub\EnglishPremierLeague\EnglishPremierLeague\Resources\football.csv";
 
@@ -53,10 +35,12 @@ namespace EnglishPremierLeague
 				.BuildServiceProvider();
 
 			//Setting the logging
-			csvServiceProvider.GetService<ILoggerFactory>().AddConsole(LogLevel.Debug);
+			csvServiceProvider.GetService<ILoggerFactory>().AddConsole(LogLevel.Trace);
 			var logger = csvServiceProvider.GetService<ILoggerFactory>().CreateLogger<Program>();
 
 			logger.LogDebug("Starting the console application");
+
+			logger.LogInformation("Starting app");
 
 			var datDataProvider = new ServiceCollection()
 				.AddSingleton<IDataAdapter, DATAdapter>()
