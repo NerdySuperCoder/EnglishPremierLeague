@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EnglishPremierLeague.Common\EnglishPremierLeague.Common.csproj" />
+    <ProjectReference Include="..\EnglishPremierLeague.DataAdapters\EnglishPremierLeague.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

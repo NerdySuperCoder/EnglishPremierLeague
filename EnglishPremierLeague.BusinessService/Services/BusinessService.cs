@@ -1,5 +1,6 @@
 ﻿using EnglishPremierLeague.BusinessServices.Validators;
 using EnglishPremierLeague.Common.Entities;
+using EnglishPremierLeague.Data.Adapters;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -12,18 +13,17 @@ namespace EnglishPremierLeague.BusinessServices.Services
 	{
 		private readonly IBusinessValidator _businessValidator;
 		private readonly ILogger<BusinessService> _logger;
-
 		private IEnumerable<Team> _teams;
 
-		public List<Team> ValidTeams
+		public IEnumerable<Team> ValidTeams
 		{
 			get
 			{
-				return validatedTeams;
+				return _teams;
 			}
 		}
 		//public IBusinessValidator BusinessValidator { get; set; }
-		private List<Team> validatedTeams;
+
 
 		//public BusinessService(IEnumerable<Team> teams)
 		//{
@@ -32,17 +32,18 @@ namespace EnglishPremierLeague.BusinessServices.Services
 		//	BusinessValidator.Validate(teams, out validatedTeams);
 		//}
 
-		public BusinessService(IBusinessValidator businessValidator, ILoggerFactory loggerFactory)
+		public BusinessService(IDataAdapter dataAdapter, IBusinessValidator businessValidator, ILoggerFactory loggerFactory)
 		{
 			_businessValidator = businessValidator;
+			_teams = dataAdapter.GetRepository();
 			_logger = loggerFactory.CreateLogger<BusinessService>();
 		}
 
-		public void SetRepository(IEnumerable<Team> teams)
-		{
-			_teams = teams;
-			_businessValidator.Validate(_teams, out validatedTeams);
-		}
+		//public void SetRepository(IEnumerable<Team> teams)
+		//{
+		//	_teams = teams;
+		//	_businessValidator.Validate(_teams, out validatedTeams);
+		//}
 
 		
 

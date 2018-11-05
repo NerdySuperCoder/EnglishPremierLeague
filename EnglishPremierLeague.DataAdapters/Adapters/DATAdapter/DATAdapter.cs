@@ -8,7 +8,7 @@ namespace EnglishPremierLeague.Data.Adapters.DATAdapter
 {
 	public class DATAdapter : DataAdapter
 	{
-		public override IEnumerable<Team> GetRepository(string FilePath, bool containsHeaderRow)
+		public override IEnumerable<Team> GetRepository()
 		{
 			throw new NotImplementedException();
 		}

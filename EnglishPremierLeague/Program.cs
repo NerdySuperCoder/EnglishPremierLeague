@@ -19,14 +19,14 @@ namespace EnglishPremierLeague
 	public class Program
 	{
 		static void Main(string[] args)
-		{
-			//commandline call
-			//dotnet EnglishPremierLeague.dll [-csv|-dat] -filepath <filepath.csv| filepath.dat> -containsheader [true|false] -csvtemplatepath <filename.xml> -loglevel [debug|trace]
+		{			
+			//Displays the help if no arguments are given.
+			if (args.Length == 0)
+				DisplayHelp();
 
+			//Gets the input and converts them into a ProgramPnput object.
 			var programInput = GetProgramInput(args);
-
-			var filePath = @"C:\Users\ElaRaji\OneDrive\Personal\GitHub\EnglishPremierLeague\EnglishPremierLeague\Resources\football.csv";
-
+						
 			//Setting Up Dependency Injection
 			var csvServiceProvider = new ServiceCollection()
 				.AddSingleton<IDataAdapter, CSVAdapter>()
@@ -36,7 +36,10 @@ namespace EnglishPremierLeague
 				.AddSingleton(typeof(ILogger<>), typeof(Logger<>))
 				.AddSingleton<IBusinessService, BusinessService>()
 				.AddSingleton<IBusinessValidator, BusinessValidator>()
+				.AddSingleton<IFileDetails>(t=> new FileDetails(programInput.FilePath,programInput.ContainsHeaderRow))
 				.BuildServiceProvider();
+
+
 
 			//Setting the logging
 			csvServiceProvider.GetService<ILoggerFactory>().AddConsole(LogLevel.Debug);
@@ -52,12 +55,12 @@ namespace EnglishPremierLeague
 				.AddSingleton(typeof(ILogger<>), typeof(Logger<>))
 				.BuildServiceProvider();
 
-			var csvRepository = csvServiceProvider.GetService<IDataAdapter>().GetRepository(filePath);
+			//var csvRepository = csvServiceProvider.GetService<IDataAdapter>().GetRepository(programInput.FilePath);
 
-			var businessService = csvServiceProvider.GetService<IBusinessService>();
-			businessService.SetRepository(csvRepository);
+			var teamStandingsService = csvServiceProvider.GetService<IBusinessService>();
+			//businessService.SetRepository(csvRepository);
 
-			var team = businessService.GetTeamWithLowDifferenceInGoals();
+			var team = teamStandingsService.GetTeamWithLowDifferenceInGoals();
 
 
 			Console.WriteLine(team.TeamName);
@@ -68,22 +71,23 @@ namespace EnglishPremierLeague
 
 		}
 
-		static ProgramInput GetProgramInput(string[] args)
+		/// <summary>
+		/// Get the program options from the user's input
+		/// </summary>
+		/// <param name="args"></param>
+		/// <returns></returns>
+		private static ProgramInput GetProgramInput(string[] args)
 		{
 			ProgramInput programInput = new ProgramInput();
 
 			if (args.Length == 0)
 				return null;
 
-
 			PropertyInfo propertyInfo = null;
 			foreach (var argument in args)
 			{
-
-
 				if (string.IsNullOrEmpty(argument))
 					break;
-
 
 				switch (argument.ToUpper())
 				{
@@ -152,10 +156,13 @@ namespace EnglishPremierLeague
 								propertyInfo = null;
 							}
 						}
-
 						break;
 				}
-
+			}
+			if (string.IsNullOrEmpty(programInput.FilePath) || !File.Exists(programInput.FilePath))
+			{
+				Console.WriteLine("File path is empty or does not exist.");
+				DisplayHelp();
 			}
 
 			return programInput;
