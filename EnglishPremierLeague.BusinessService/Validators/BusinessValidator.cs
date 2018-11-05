@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using EnglishPremierLeague.Common.Entities;
 using Microsoft.Extensions.Logging;
 

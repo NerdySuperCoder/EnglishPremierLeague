@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using EnglishPremierLeague.Common.Entities;
 
 namespace EnglishPremierLeague.Data.Adapters.Validators

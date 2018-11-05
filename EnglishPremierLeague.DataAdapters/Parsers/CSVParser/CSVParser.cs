@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EnglishPremierLeague.Common.Entities;
+﻿using EnglishPremierLeague.Common.Entities;
 using EnglishPremierLeague.Data.Adapters.Validators;
-using EnglishPremierLeague.Data.Adapters.Validators.CSVValidator;
 using Microsoft.Extensions.Logging;
 
 namespace EnglishPremierLeague.Data.Adapters.Parsers.CSVParser
