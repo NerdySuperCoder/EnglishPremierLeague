@@ -18,4 +18,10 @@
     <ProjectReference Include="..\EnglishPremierLeague.DataAdapters\EnglishPremierLeague.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="DisplayText.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

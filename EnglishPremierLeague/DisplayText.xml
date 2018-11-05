@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<displaytext>
+
+USAGE:
+-------------------------------------------------------------
+
+dotnet EnglishPremierLeague.dll [-csv|-dat] -filepath &lt;"filename.csv"| "filename.dat"&gt; [-loglevel [debug|trace]] [-csvtemplatepath|-dattemplatepath &lt;"csvtemplate.xml"&gt;]
+
+-------------------------------------------------------------
+
+-csv 				: Use CSV funtionality for the input file
+-dat 				: Use DAT functionality for the input file
+-filepath 			: Full path of the input file within double quotes. This option is mandatory.
+-loglevel			: Loging level for the program [debug | trace]
+-csvtemplatepath	: Full path of the csv template within double quotes
+-dattemplatepath	: Full path of the dat template within double quotes
+	
+-------------------------------------------------------------
+
+default values:
+
+-csv
+-loglevel : Debug
+-csvtemplatepath :Template within the project
+-dattemplatepath :Template within the project
+
+-------------------------------------------------------------
+
+Examples:
+
+dotnet EnglishPremierLeague.dll -csv -filepath "C:\Temp\Data.csv"
+
+dotnet EnglishPremierLeague.dll -csv -filepath "C:\Temp\Data.csv" -loglevel debug -csvtemplatepath "C:\Temp\CSVTemplate.xml"
+
+-------------------------------------------------------------
+
+</displaytext>
