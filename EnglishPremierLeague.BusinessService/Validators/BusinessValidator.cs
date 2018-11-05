@@ -17,7 +17,7 @@ namespace EnglishPremierLeague.BusinessServices.Validators
 
 		public bool Validate(IEnumerable<Team> teamData, out List<Team> validTeams, bool ignoreInvalidData = true)
 		{
-			bool isValid = false;
+			bool isValid = true;
 			validTeams = null;
 			var validatedTeams = new List<Team>();
 			foreach (var team in teamData)
@@ -25,13 +25,12 @@ namespace EnglishPremierLeague.BusinessServices.Validators
 				if (!ValidatePoints(team) || !ValidateMatches(team))
 				{
 					if (!ignoreInvalidData)
-						return isValid;
+						return false;
 				}
 				else
 				{
 					validatedTeams.Add(team);
 				}
-
 				
 			}
 			validTeams = validatedTeams;

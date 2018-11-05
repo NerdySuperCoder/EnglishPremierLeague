@@ -1,7 +1,8 @@
 {
   "profiles": {
     "EnglishPremierLeague.Console": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "-filepath \"D:\\Ela\\football.csv\" -loglevel debug"
     }
   }
 }

@@ -13,7 +13,7 @@ namespace EnglishPremierLeague.Data.Adapters.Validators.CSVValidator
 
 	public class CSVValidator : DataValidator
 	{
-		private readonly ILogger<CSVValidator> logger;
+		private readonly ILogger<CSVValidator> _logger;
 		public char[] Delimiters { get; set; }
 		public List<Column> Columns { get; set; }
 
@@ -22,7 +22,7 @@ namespace EnglishPremierLeague.Data.Adapters.Validators.CSVValidator
 			var columnList = new XmlSerializer(typeof(List<Column>), new XmlRootAttribute("Columns"));			
 			Columns = (List<Column>) columnList.Deserialize(new FileStream(@".\Validators\CSVValidator\CSVTemplate.xml", FileMode.Open));
 			Delimiters = new char[] { ',' };
-			logger = loggerFactory.CreateLogger<CSVValidator>();
+			_logger = loggerFactory.CreateLogger<CSVValidator>();
 		}
 
 		public override bool Validate(string rowData, bool isHeaderRow, out Team team)
@@ -33,7 +33,7 @@ namespace EnglishPremierLeague.Data.Adapters.Validators.CSVValidator
 
 			if (!ValidateColumnCount(columnValues.Length, Columns.Count))
 			{
-				logger.LogDebug("Column count does not match");
+				_logger.LogDebug("Column count does not match");
 				if (isHeaderRow)
 					throw new Exception("Column count does not match with the template");
 
@@ -43,6 +43,7 @@ namespace EnglishPremierLeague.Data.Adapters.Validators.CSVValidator
 
 			if (isHeaderRow)
 			{
+				_logger.LogDebug("Header row. Validating column names with the template");
 				foreach (var columnValue in columnValues)
 				{
 					if (!ValidateColumnName(columnValue, Columns.Find(t => t.Index == (Array.IndexOf(columnValues, columnValue) +1)).Name))
@@ -52,6 +53,7 @@ namespace EnglishPremierLeague.Data.Adapters.Validators.CSVValidator
 			}
 			else
 			{
+				_logger.LogDebug("Data row. Validating data with the template for data type");
 				team = new Team();
 				foreach (var columnValue in columnValues.Select((value, index) => new { index, value }))
 				{
@@ -66,6 +68,8 @@ namespace EnglishPremierLeague.Data.Adapters.Validators.CSVValidator
 					}
 					else
 					{
+						_logger.LogDebug("Row data is not valid. Ignoring row data");
+						_logger.LogDebug(rowData);
 						return isValid;
 					}
 					

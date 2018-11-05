@@ -18,17 +18,48 @@ namespace EnglishPremierLeague
 {
 	public class Program
 	{
+		#region Main Function
+		/// <summary>
+		/// Main function for the console
+		/// </summary>
+		/// <param name="args"></param>
 		static void Main(string[] args)
-		{			
+		{
 			//Displays the help if no arguments are given.
 			if (args.Length == 0)
 				DisplayHelp();
 
 			//Gets the input and converts them into a ProgramPnput object.
 			var programInput = GetProgramInput(args);
-						
-			//Setting Up Dependency Injection
-			var csvServiceProvider = new ServiceCollection()
+
+			//Get the service provider based on the input type - csv or dat
+			var serviceProvider = GetServiceProvider(programInput);
+
+			//Setting the logging
+			serviceProvider.GetService<ILoggerFactory>().AddConsole(programInput.LogLevel);
+			var logger = serviceProvider.GetService<ILoggerFactory>().CreateLogger<Program>();
+
+			logger.LogDebug("Getting the business service");
+			var teamStandingsService = serviceProvider.GetService<IBusinessService>();
+
+			logger.LogDebug("Calling service function to get the team with lowest difference");
+			var team = teamStandingsService.GetTeamWithLowDifferenceInGoals();
+			Console.WriteLine("\n The team with the least difference between for and against goals is: {0}", team.TeamName);
+			Environment.Exit(0);
+
+		} 
+		#endregion
+
+		#region Private static functions
+		/// <summary>
+		/// Gets the service provider based on the input arguments.
+		/// </summary>
+		/// <param name="programInput"></param>
+		/// <returns></returns>
+		private static ServiceProvider GetServiceProvider(ProgramInput programInput)
+		{
+			if (programInput.Input == InputType.CSV)
+				return new ServiceCollection()
 				.AddSingleton<IDataAdapter, CSVAdapter>()
 				.AddSingleton<IParser, CSVParser>()
 				.AddSingleton<IValidator, CSVValidator>()
@@ -36,39 +67,14 @@ namespace EnglishPremierLeague
 				.AddSingleton(typeof(ILogger<>), typeof(Logger<>))
 				.AddSingleton<IBusinessService, BusinessService>()
 				.AddSingleton<IBusinessValidator, BusinessValidator>()
-				.AddSingleton<IFileDetails>(t=> new FileDetails(programInput.FilePath,programInput.ContainsHeaderRow))
+				.AddSingleton<IFileDetails>(t => new FileDetails(programInput.FilePath, programInput.ContainsHeaderRow))
 				.BuildServiceProvider();
 
-
-
-			//Setting the logging
-			csvServiceProvider.GetService<ILoggerFactory>().AddConsole(LogLevel.Debug);
-			var logger = csvServiceProvider.GetService<ILoggerFactory>().CreateLogger<Program>();
-
-			logger.LogDebug("Starting the console application");
-
-			logger.LogInformation("Starting app");
-
-			var datDataProvider = new ServiceCollection()
+			return new ServiceCollection()
 				.AddSingleton<IDataAdapter, DATAdapter>()
 				.AddSingleton<ILoggerFactory, LoggerFactory>()
 				.AddSingleton(typeof(ILogger<>), typeof(Logger<>))
 				.BuildServiceProvider();
-
-			//var csvRepository = csvServiceProvider.GetService<IDataAdapter>().GetRepository(programInput.FilePath);
-
-			var teamStandingsService = csvServiceProvider.GetService<IBusinessService>();
-			//businessService.SetRepository(csvRepository);
-
-			var team = teamStandingsService.GetTeamWithLowDifferenceInGoals();
-
-
-			Console.WriteLine(team.TeamName);
-			Console.ReadLine();
-			//var testDAT = datDataProvider.GetService<IDataAdapter>().GetData(filePath);
-
-
-
 		}
 
 		/// <summary>
@@ -79,6 +85,11 @@ namespace EnglishPremierLeague
 		private static ProgramInput GetProgramInput(string[] args)
 		{
 			ProgramInput programInput = new ProgramInput();
+
+			//setting the default values
+			programInput.Input = InputType.CSV;
+			programInput.LogLevel = LogLevel.None;
+			programInput.ContainsHeaderRow = true;
 
 			if (args.Length == 0)
 				return null;
@@ -168,21 +179,21 @@ namespace EnglishPremierLeague
 			return programInput;
 		}
 
+		/// <summary>
+		/// Function to display the help
+		/// </summary>
 		private static void DisplayHelp()
 		{
-			
+
 			XmlDocument displayDocument = new XmlDocument();
 			displayDocument.Load(@".\DisplayText.xml");
 			var displayString = displayDocument.SelectSingleNode("displaytext").InnerText;
 
-
 			Console.WriteLine(displayString);
 			Environment.Exit(0);
-			
-		}
+
+		} 
+		#endregion
 
 	}
-
-
-
 }
