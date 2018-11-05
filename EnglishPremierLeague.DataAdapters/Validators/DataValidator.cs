@@ -46,7 +46,13 @@ namespace EnglishPremierLeague.Data.Adapters.Validators
 			foreach (var length in lengthArray.Select((value, index) => new { index, value }))
 			{
 				var currentIndex = previousIndex+1;
-				var splitString = data.Substring(currentIndex, length.value);
+
+				string splitString;
+				if ((currentIndex + length.value) < data.Length)
+					 splitString= data.Substring(currentIndex, length.value);
+				else
+					splitString = data.Substring(currentIndex, data.Length - currentIndex);
+
 				splitStrings.Add(splitString);
 				previousIndex = previousIndex + length.value;
 			}

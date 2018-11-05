@@ -47,7 +47,7 @@ namespace EnglishPremierLeague.Data.Validators.DATValidator
 				_logger.LogDebug("Header row. Validating column names with the template");
 				foreach (var columnValue in columnValues)
 				{
-					if (!ValidateColumnName(columnValue.Trim(), Columns.Find(t => t.Index == (Array.IndexOf(columnValues, columnValue) + 1)).Name))
+					if (!ValidateColumnName(columnValue, Columns.Find(t => t.Index == (Array.IndexOf(columnValues, columnValue) + 1)).Name))
 						return isValid;
 				}
 				isValid = true;
@@ -61,7 +61,7 @@ namespace EnglishPremierLeague.Data.Validators.DATValidator
 					Column column = Columns.Find(t => t.Index == (columnValue.index + 1));
 					var columnType = Type.GetType(column.Type);
 					object convertedValue;
-					if (ValidateColumnType(columnValue.value, columnType, out convertedValue))
+					if (ValidateColumnType(columnValue.value.Trim(), columnType, out convertedValue))
 					{
 						var propertyInfo = (team.GetType()).GetProperty(column.PropertyName);
 						if (propertyInfo != null)
