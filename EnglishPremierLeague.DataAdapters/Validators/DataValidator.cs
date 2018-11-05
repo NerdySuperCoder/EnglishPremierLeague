@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using EnglishPremierLeague.Common.Entities;
 
 namespace EnglishPremierLeague.Data.Adapters.Validators
@@ -34,6 +36,22 @@ namespace EnglishPremierLeague.Data.Adapters.Validators
 		public bool ValidateColumnCount(int splitCount, int columnCount)
 		{
 			return splitCount == columnCount;
+		}
+
+		public string[] SplitByLength(string data, int[] lengthArray)
+		{
+			List<string> splitStrings = new List<string>();
+
+			var previousIndex = -1;
+			foreach (var length in lengthArray.Select((value, index) => new { index, value }))
+			{
+				var currentIndex = previousIndex+1;
+				var splitString = data.Substring(currentIndex, length.value);
+				splitStrings.Add(splitString);
+				previousIndex = previousIndex + length.value;
+			}
+
+			return splitStrings.ToArray();
 		}
 	}
 }

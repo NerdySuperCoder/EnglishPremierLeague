@@ -13,6 +13,8 @@ using EnglishPremierLeague.Data.Adapters.Parsers.CSVParser;
 using EnglishPremierLeague.Data.Adapters.Validators;
 using EnglishPremierLeague.Data.Adapters.Validators.CSVValidator;
 using EnglishPremierLeague.BusinessServices.Validators;
+using EnglishPremierLeague.Data.Parsers.DATParser;
+using EnglishPremierLeague.Data.Validators.DATValidator;
 
 namespace EnglishPremierLeague
 {
@@ -72,8 +74,13 @@ namespace EnglishPremierLeague
 
 			return new ServiceCollection()
 				.AddSingleton<IDataAdapter, DATAdapter>()
+				.AddSingleton<IParser, DATParser>()
+				.AddSingleton<IValidator, DATValidator>()
 				.AddSingleton<ILoggerFactory, LoggerFactory>()
 				.AddSingleton(typeof(ILogger<>), typeof(Logger<>))
+				.AddSingleton<IBusinessService, BusinessService>()
+				.AddSingleton<IBusinessValidator, BusinessValidator>()
+				.AddSingleton<IFileDetails>(t => new FileDetails(programInput.FilePath, programInput.ContainsHeaderRow))
 				.BuildServiceProvider();
 		}
 

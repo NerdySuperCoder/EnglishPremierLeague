@@ -5,11 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Parsers\DATParser\" />
-    <Folder Include="Validators\DATValidator\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EnglishPremierLeague.Common\EnglishPremierLeague.Common.csproj" />
   </ItemGroup>
 
@@ -21,6 +16,9 @@
 
   <ItemGroup>
     <None Update="Validators\CSVValidator\CSVTemplate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Validators\DATValidator\DATTemplate.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
