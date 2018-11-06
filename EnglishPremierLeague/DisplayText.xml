@@ -9,10 +9,10 @@ dotnet EnglishPremierLeague.dll [-csv|-dat] -filepath &lt;"filename.csv"| "filen
 
 ---------------------------------------------------------------------------------------------
 
--csv 				: Use CSV funtionality for the input file
+-csv 				: Use CSV functionality for the input file
 -dat 				: Use DAT functionality for the input file
--filepath			: Full path of the input file within double quotes.
-				  This option is mandatory.
+-filepath			: Full path of the input file within double quotes
+				  This option is mandatory
 -loglevel			: Loging level for the program [debug | none]
 -csvtemplatepath		: Full path of the csv template within double quotes
 -dattemplatepath		: Full path of the dat template within double quotes
