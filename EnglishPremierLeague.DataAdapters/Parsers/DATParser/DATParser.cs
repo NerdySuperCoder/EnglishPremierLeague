@@ -23,12 +23,20 @@ namespace EnglishPremierLeague.Data.Parsers.DATParser
 		#region IParser Methods
 		public Team Parse(string rowData, bool headerRow)
 		{
+			try
+			{
 
-			Team team;
-			if (_datValidator.Validate(rowData, headerRow, out team))
-				return team;
+				Team team;
+				if (_datValidator.Validate(rowData, headerRow, out team))
+					return team;
 
-			return null;
+				return null;
+			}
+			catch (System.Exception)
+			{
+
+				throw;
+			}
 		} 
 		#endregion
 	}

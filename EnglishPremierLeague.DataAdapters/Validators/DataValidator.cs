@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using EnglishPremierLeague.Common.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace EnglishPremierLeague.Data.Adapters.Validators
 {
 	public abstract class DataValidator : IValidator
 	{
+		protected readonly ILogger<DataValidator> _logger;
+
+		public DataValidator(ILoggerFactory loggerFactory)
+		{
+			_logger = loggerFactory.CreateLogger<DataValidator>();
+		}
+
 		#region Abstract methods
 		public abstract bool Validate(string rowData, bool isHeaderRow, out Team team);
 		#endregion
@@ -26,14 +34,16 @@ namespace EnglishPremierLeague.Data.Adapters.Validators
 			}
 			catch (Exception ex)
 			{
-				//Log the value is not converted
+				_logger.LogDebug("Suppressing the conversion failure for data in DataValidator: Data: {0}" +
+					"Datatype:{1} {2}",data,dataType.ToString(), ex.StackTrace);
+				
 			}
 			return convertedValue != null;
 		}
 
 		public bool ValidateColumnName(string data, string columnName)
 		{
-			return data.Trim().ToUpper() == columnName.ToUpper();
+			return data?.Trim().ToUpper() == columnName?.ToUpper();
 		}
 
 		public bool ValidateColumnCount(int splitCount, int columnCount)
@@ -43,24 +53,32 @@ namespace EnglishPremierLeague.Data.Adapters.Validators
 
 		public string[] SplitByLength(string data, int[] lengthArray)
 		{
-			List<string> splitStrings = new List<string>();
-
-			var previousIndex = -1;
-			foreach (var length in lengthArray.Select((value, index) => new { index, value }))
+			try
 			{
-				var currentIndex = previousIndex + 1;
+				List<string> splitStrings = new List<string>();
 
-				string splitString;
-				if ((currentIndex + length.value) < data.Length)
-					splitString = data.Substring(currentIndex, length.value);
-				else
-					splitString = data.Substring(currentIndex, data.Length - currentIndex);
+				var previousIndex = -1;
+				foreach (var length in lengthArray.Select((value, index) => new { index, value }))
+				{
+					var currentIndex = previousIndex + 1;
 
-				splitStrings.Add(splitString);
-				previousIndex = previousIndex + length.value;
+					string splitString;
+					if ((currentIndex + length.value) < data.Length)
+						splitString = data.Substring(currentIndex, length.value);
+					else
+						splitString = data.Substring(currentIndex, data.Length - currentIndex);
+
+					splitStrings.Add(splitString);
+					previousIndex = previousIndex + length.value;
+				}
+
+				return splitStrings.ToArray();
 			}
+			catch (Exception)
+			{
 
-			return splitStrings.ToArray();
+				throw;
+			}
 		}
 		#endregion
 	}

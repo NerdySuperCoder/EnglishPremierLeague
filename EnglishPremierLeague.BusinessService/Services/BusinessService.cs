@@ -48,10 +48,18 @@ namespace EnglishPremierLeague.BusinessServices.Services
 		/// <returns></returns>
 		public Team GetTeamWithLowDifferenceInGoals()
 		{
-			
-			if (Validate())
-				return _validTeams.OrderBy(t => t.GoalDifference).FirstOrDefault();
-			throw new Exception("Repository not valid");
+			try
+			{
+
+				if (Validate())
+					return _validTeams.OrderBy(t => t.GoalDifference).FirstOrDefault();
+				throw new Exception("Repository not valid");
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
 		}
 
 		#endregion
@@ -59,8 +67,16 @@ namespace EnglishPremierLeague.BusinessServices.Services
 		#region Private methods
 		private bool Validate()
 		{
-			_logger.LogDebug("Validating the repository based on business rules");
-			return _businessValidator.Validate(_teams, out _validTeams);
+			try
+			{
+				_logger.LogDebug("Validating the repository based on business rules");
+				return _businessValidator.Validate(_teams, out _validTeams);
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
 		}
 		#endregion
 	}

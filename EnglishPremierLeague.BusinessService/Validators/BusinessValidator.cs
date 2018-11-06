@@ -21,42 +21,66 @@ namespace EnglishPremierLeague.BusinessServices.Validators
 		#region IBusinessValidator Methods
 		public bool Validate(IEnumerable<Team> teamData, out List<Team> validTeams, bool ignoreInvalidData = true)
 		{
-			bool isValid = true;
-			validTeams = null;
-			var validatedTeams = new List<Team>();
-			foreach (var team in teamData)
+			try
 			{
-				if (!ValidatePoints(team) || !ValidateMatches(team))
+				bool isValid = true;
+				validTeams = null;
+				var validatedTeams = new List<Team>();
+				foreach (var team in teamData)
 				{
-					if (!ignoreInvalidData)
-						return false;
-				}
-				else
-				{
-					validatedTeams.Add(team);
-				}
+					if (!ValidatePoints(team) || !ValidateMatches(team))
+					{
+						if (!ignoreInvalidData)
+							return false;
+					}
+					else
+					{
+						validatedTeams.Add(team);
+					}
 
+				}
+				validTeams = validatedTeams;
+				return isValid;
 			}
-			validTeams = validatedTeams;
-			return isValid;
+			catch (System.Exception)
+			{
+
+				throw;
+			}
 		}
 
 		public bool ValidatePoints(Team team)
 		{
-			return team.Points == (
-					(team.NumberOfWins * 3) +
-					(team.NumberOfDraws * 1)
-					);
+			try
+			{
+				return team.Points == (
+							(team.NumberOfWins * 3) +
+							(team.NumberOfDraws * 1)
+							);
+			}
+			catch (System.Exception)
+			{
+
+				throw;
+			}
 
 		}
 
 		public bool ValidateMatches(Team team)
 		{
-			return team.NumberOfPlayed == (
-				team.NumberOfWins +
-				team.NumberOfLosses +
-				team.NumberOfDraws
-				);
+			try
+			{
+				return team.NumberOfPlayed == (
+						team.NumberOfWins +
+						team.NumberOfLosses +
+						team.NumberOfDraws
+						);
+			}
+			catch (System.Exception)
+			{
+
+				throw;
+			}
 		} 
 		#endregion
 	}
