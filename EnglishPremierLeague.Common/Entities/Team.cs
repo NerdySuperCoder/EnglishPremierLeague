@@ -4,6 +4,7 @@ namespace EnglishPremierLeague.Common.Entities
 {
 	public class Team
 	{
+		#region Public Properties
 		public string TeamName { get; set; }
 		public int NumberOfPlayed { get; set; }
 		public int NumberOfWins { get; set; }
@@ -19,6 +20,7 @@ namespace EnglishPremierLeague.Common.Entities
 			{
 				return Math.Abs(NumberOfGoalsScored - NumberOfGoalsScoredAgainst);
 			}
-		}
+		} 
+		#endregion
 	}
 }

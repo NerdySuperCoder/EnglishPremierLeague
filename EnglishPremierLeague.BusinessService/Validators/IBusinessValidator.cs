@@ -7,8 +7,10 @@ namespace EnglishPremierLeague.BusinessServices.Validators
 {
 	public interface IBusinessValidator
 	{
+		#region IBusinessValidator
 		bool Validate(IEnumerable<Team> teamsData, out List<Team> validTeams, bool ignoreInvalidData = true);
 		bool ValidatePoints(Team team);
-		bool ValidateMatches(Team team);
+		bool ValidateMatches(Team team); 
+		#endregion
 	}
 }

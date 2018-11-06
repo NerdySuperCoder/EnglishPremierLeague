@@ -12,24 +12,28 @@ namespace EnglishPremierLeague.Data.Validators.DATValidator
 {
 	public class DATValidator: DataValidator
 	{
+		#region Private fields and properties
 		private readonly ILogger<DATValidator> _logger;
 		private int[] _splitLengthArray;
+		private List<Column> Columns { get; set; }
+		#endregion
 
-		public List<Column> Columns { get; set; }
-
+		#region Constructor
 		public DATValidator(ILoggerFactory loggerFactory)
 		{
 			var columnList = new XmlSerializer(typeof(List<Column>), new XmlRootAttribute("Columns"));
-			Columns = (List<Column>)columnList.Deserialize(new FileStream(@".\Validators\DATValidator\DATTemplate.xml", FileMode.Open));			
+			Columns = (List<Column>)columnList.Deserialize(new FileStream(@".\Validators\DATValidator\DATTemplate.xml", FileMode.Open));
 			_splitLengthArray = Columns.Select(t => t.Length).ToArray();
 			_logger = loggerFactory.CreateLogger<DATValidator>();
 		}
+		#endregion
 
+		#region Overidden Methods
 		public override bool Validate(string rowData, bool isHeaderRow, out Team team)
 		{
 			bool isValid = false;
 			team = null;
-			
+
 			var columnValues = SplitByLength(rowData, _splitLengthArray);
 
 			if (!ValidateColumnCount(columnValues.Length, Columns.Count))
@@ -79,6 +83,7 @@ namespace EnglishPremierLeague.Data.Validators.DATValidator
 			}
 
 			return isValid;
-		}
+		} 
+		#endregion
 	}
 }

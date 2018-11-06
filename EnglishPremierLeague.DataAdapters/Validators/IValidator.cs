@@ -7,6 +7,8 @@ namespace EnglishPremierLeague.Data.Adapters.Validators
 {
 	public interface IValidator
 	{
-		bool Validate(string rowData, bool isHeaderRow, out Team team);
+		#region IValidator Methods
+		bool Validate(string rowData, bool isHeaderRow, out Team team); 
+		#endregion
 	}
 }

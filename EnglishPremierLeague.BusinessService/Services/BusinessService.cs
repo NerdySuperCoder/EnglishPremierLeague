@@ -16,7 +16,6 @@ namespace EnglishPremierLeague.BusinessServices.Services
 		private readonly IEnumerable<Team> _teams;
 		private List<Team> _validTeams;
 		#endregion
-
 		
 		#region Constructor
 		/// <summary>

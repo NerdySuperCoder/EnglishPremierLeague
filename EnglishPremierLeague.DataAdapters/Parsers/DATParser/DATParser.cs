@@ -7,15 +7,20 @@ namespace EnglishPremierLeague.Data.Parsers.DATParser
 {
 	public class DATParser : IParser
 	{
+		#region Private fields
 		private readonly IValidator _datValidator;
 		private readonly ILogger<DATParser> _logger;
+		#endregion
 
+		#region Constructor
 		public DATParser(IValidator datValidator, ILoggerFactory loggerFactory)
 		{
 			_datValidator = datValidator;
 			_logger = loggerFactory.CreateLogger<DATParser>();
 		}
+		#endregion
 
+		#region IParser Methods
 		public Team Parse(string rowData, bool headerRow)
 		{
 
@@ -24,6 +29,7 @@ namespace EnglishPremierLeague.Data.Parsers.DATParser
 				return team;
 
 			return null;
-		}
+		} 
+		#endregion
 	}
 }

@@ -7,6 +7,8 @@ namespace EnglishPremierLeague.Data.Adapters.Parsers
 {
 	public interface IParser
 	{
-		Team Parse(string rowData, bool headerRow);
+		#region IParser Methods
+		Team Parse(string rowData, bool headerRow); 
+		#endregion
 	}
 }

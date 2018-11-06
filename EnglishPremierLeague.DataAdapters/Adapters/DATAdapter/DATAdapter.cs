@@ -12,15 +12,19 @@ namespace EnglishPremierLeague.Data.Adapters.DATAdapter
 		#region Private variables
 		private readonly IParser _datParser;
 		private readonly ILogger<DATAdapter> _logger;
-		private readonly IFileDetails _fileDetails; 
+		private readonly IFileDetails _fileDetails;
 		#endregion
 
+		#region Constructor
 		public DATAdapter(IFileDetails fileDetails, IParser datParser, ILoggerFactory loggerFactory)
 		{
 			_fileDetails = fileDetails;
 			_datParser = datParser;
 			_logger = loggerFactory.CreateLogger<DATAdapter>();
 		}
+		#endregion
+
+		#region Overidden Methods
 		public override IEnumerable<Team> GetRepository()
 		{
 			List<Team> teamStandings = new List<Team>();
@@ -53,6 +57,7 @@ namespace EnglishPremierLeague.Data.Adapters.DATAdapter
 
 			}
 			return teamStandings;
-		}
+		} 
+		#endregion
 	}
 }

@@ -4,8 +4,11 @@ namespace EnglishPremierLeague.BusinessServices.Services
 {
 	public interface IBusinessService
 	{
-		//void SetRepository(IEnumerable<Team> teams);
+		#region IBusinessServiceMethods
+
 		Team GetTeamWithLowDifferenceInGoals();
-		string GetTeamLeader();
+		string GetTeamLeader(); 
+	
+		#endregion
 	}
 }

@@ -8,18 +8,21 @@ namespace EnglishPremierLeague.Data.Adapters.Validators
 {
 	public abstract class DataValidator : IValidator
 	{
+		#region Abstract methods
 		public abstract bool Validate(string rowData, bool isHeaderRow, out Team team);
+		#endregion
 
+		#region Public methods
 		public bool ValidateColumnType(string data, Type dataType, out object convertedValue)
 		{
 			convertedValue = null;
 			try
 			{
 				var converter = TypeDescriptor.GetConverter(dataType);
-				if(converter!= null)
+				if (converter != null)
 					convertedValue = converter.ConvertFrom(data);
 
-				
+
 			}
 			catch (Exception ex)
 			{
@@ -45,11 +48,11 @@ namespace EnglishPremierLeague.Data.Adapters.Validators
 			var previousIndex = -1;
 			foreach (var length in lengthArray.Select((value, index) => new { index, value }))
 			{
-				var currentIndex = previousIndex+1;
+				var currentIndex = previousIndex + 1;
 
 				string splitString;
 				if ((currentIndex + length.value) < data.Length)
-					 splitString= data.Substring(currentIndex, length.value);
+					splitString = data.Substring(currentIndex, length.value);
 				else
 					splitString = data.Substring(currentIndex, data.Length - currentIndex);
 
@@ -59,5 +62,7 @@ namespace EnglishPremierLeague.Data.Adapters.Validators
 
 			return splitStrings.ToArray();
 		}
+		#endregion
 	}
+
 }

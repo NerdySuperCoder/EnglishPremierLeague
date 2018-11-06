@@ -8,17 +8,22 @@ namespace EnglishPremierLeague.Data.Adapters.CSVAdapter
 {
 	public class CSVAdapter : DataAdapter
 	{
+		#region MyRegion
 		private readonly IParser _csvParser;
 		private readonly ILogger<CSVAdapter> _logger;
 		private readonly IFileDetails _fileDetails;
+		#endregion
 
+		#region Constructor
 		public CSVAdapter(IFileDetails fileDetails, IParser csvParser, ILoggerFactory loggerFactory)
 		{
 			_fileDetails = fileDetails;
 			_csvParser = csvParser;
 			_logger = loggerFactory.CreateLogger<CSVAdapter>();
 		}
+		#endregion
 
+		#region Overidden Methods
 		public override IEnumerable<Team> GetRepository()
 		{
 			List<Team> teamStandings = new List<Team>();
@@ -41,16 +46,17 @@ namespace EnglishPremierLeague.Data.Adapters.CSVAdapter
 
 				_logger.LogDebug("Parsing data from CSV File");
 				while ((line = csvReader.ReadLine()) != null)
-				{					
+				{
 					var team = _csvParser.Parse(line, headerRow);
-					if (!headerRow && team!=null)
+					if (!headerRow && team != null)
 						teamStandings.Add(team);
 
 					headerRow = false;
 				}
-				
+
 			}
 			return teamStandings;
-		}
+		} 
+		#endregion
 	}
 }

@@ -6,13 +6,19 @@ namespace EnglishPremierLeague.BusinessServices.Validators
 {
 	public class BusinessValidator : IBusinessValidator
 	{
-		private readonly ILogger<BusinessValidator> _logger;
 
+		#region Private variables
+		private readonly ILogger<BusinessValidator> _logger;
+		#endregion
+
+		#region Constructor
 		public BusinessValidator(ILoggerFactory loggerFactory)
 		{
 			_logger = loggerFactory.CreateLogger<BusinessValidator>();
 		}
+		#endregion
 
+		#region IBusinessValidator Methods
 		public bool Validate(IEnumerable<Team> teamData, out List<Team> validTeams, bool ignoreInvalidData = true)
 		{
 			bool isValid = true;
@@ -29,7 +35,7 @@ namespace EnglishPremierLeague.BusinessServices.Validators
 				{
 					validatedTeams.Add(team);
 				}
-				
+
 			}
 			validTeams = validatedTeams;
 			return isValid;
@@ -51,6 +57,7 @@ namespace EnglishPremierLeague.BusinessServices.Validators
 				team.NumberOfLosses +
 				team.NumberOfDraws
 				);
-		}
+		} 
+		#endregion
 	}
 }
