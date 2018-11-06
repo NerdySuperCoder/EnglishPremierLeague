@@ -1,4 +1,5 @@
 ﻿using EnglishPremierLeague.Common.Entities;
+using System.Collections.Generic;
 
 namespace EnglishPremierLeague.BusinessServices.Services
 {
@@ -6,7 +7,7 @@ namespace EnglishPremierLeague.BusinessServices.Services
 	{
 		#region IBusinessServiceMethods
 
-		Team GetTeamWithLowDifferenceInGoals();
+		List<Team> GetTeamWithLowDifferenceInGoals();
 		string GetTeamLeader(); 
 	
 		#endregion

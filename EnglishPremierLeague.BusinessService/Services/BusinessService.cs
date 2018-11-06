@@ -46,13 +46,17 @@ namespace EnglishPremierLeague.BusinessServices.Services
 		/// Get the team with the lowest goal difference between for and against goals
 		/// </summary>
 		/// <returns></returns>
-		public Team GetTeamWithLowDifferenceInGoals()
+		public List<Team> GetTeamWithLowDifferenceInGoals()
 		{
 			try
 			{
 
 				if (Validate())
-					return _validTeams.OrderBy(t => t.GoalDifference).FirstOrDefault();
+				{
+					var lowestGoalDifferenceTeam = _validTeams.OrderBy(t => t.GoalDifference).FirstOrDefault();
+					return _validTeams.Where(t => t.GoalDifference == lowestGoalDifferenceTeam.GoalDifference).ToList();
+				}
+					
 				throw new Exception("Repository not valid");
 			}
 			catch (Exception)

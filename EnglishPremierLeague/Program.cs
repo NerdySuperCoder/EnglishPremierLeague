@@ -15,6 +15,7 @@ using EnglishPremierLeague.Data.Adapters.Validators.CSVValidator;
 using EnglishPremierLeague.BusinessServices.Validators;
 using EnglishPremierLeague.Data.Parsers.DATParser;
 using EnglishPremierLeague.Data.Validators.DATValidator;
+using System.Linq;
 
 namespace EnglishPremierLeague
 {
@@ -44,7 +45,7 @@ namespace EnglishPremierLeague
 
 		#region Private static functions
 
-		public static string EnglishPremierLeague(string[] args)
+		public static string[] EnglishPremierLeague(string[] args)
 		{
 			try
 			{
@@ -66,9 +67,9 @@ namespace EnglishPremierLeague
 				var teamStandingsService = serviceProvider.GetService<IBusinessService>();
 
 				logger.LogDebug("Calling service function to get the team with lowest difference");
-				var team = teamStandingsService.GetTeamWithLowDifferenceInGoals();
+				var teams = teamStandingsService.GetTeamWithLowDifferenceInGoals();
 
-				return team.TeamName;
+				return teams.Select(t=>t.TeamName).ToArray();
 				
 			}
 			catch (Exception)

@@ -24,7 +24,7 @@ namespace EnglishPremierLeague.Tests
 
 			var lowDifferenceTeam = Program.EnglishPremierLeague(passingArguments);
 
-			Assert.Equal("8. Aston_Villa", lowDifferenceTeam);
+			Assert.Contains("8. Aston_Villa", lowDifferenceTeam);
 			
 		}
 
@@ -40,7 +40,7 @@ namespace EnglishPremierLeague.Tests
 
 			var lowDifferenceTeam = Program.EnglishPremierLeague(passingArguments);
 
-			Assert.Equal("8. Aston_Villa", lowDifferenceTeam);
+			Assert.Contains("8. Aston_Villa", lowDifferenceTeam);
 
 		}
 
@@ -118,7 +118,7 @@ namespace EnglishPremierLeague.Tests
 
 			var lowDifferenceTeam = Program.EnglishPremierLeague(passingArguments);
 
-			Assert.Equal("8. Aston_Villa", lowDifferenceTeam);
+			Assert.Contains("8. Aston_Villa", lowDifferenceTeam);
 
 		}
 	}
