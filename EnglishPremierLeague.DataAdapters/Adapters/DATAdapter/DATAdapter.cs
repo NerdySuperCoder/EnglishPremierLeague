@@ -40,6 +40,11 @@ namespace EnglishPremierLeague.Data.Adapters.DATAdapter
 					throw new FileNotFoundException();
 				}
 
+				if (new FileInfo(_fileDetails.FilePath).Length == 0)
+				{
+					_logger.LogDebug("Checking for File contents");
+					throw new System.Exception("File is Empty");
+				}
 
 				_logger.LogDebug("Reading the DAT file");
 				using (TextReader datReader = new StreamReader(_fileDetails.FilePath))

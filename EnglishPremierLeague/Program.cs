@@ -29,6 +29,25 @@ namespace EnglishPremierLeague
 		{
 			try
 			{
+				var lowDifferenceTeam = EnglishPremierLeague(args);
+
+				Console.WriteLine("\n The team with the least difference between for and against goals is: {0}", lowDifferenceTeam);
+				Environment.Exit(0);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("Exception thrown: {0}", ex.StackTrace);
+				throw;
+			}
+		}
+		#endregion
+
+		#region Private static functions
+
+		public static string EnglishPremierLeague(string[] args)
+		{
+			try
+			{
 				//Displays the help if no arguments are given.
 				if (args.Length == 0)
 					DisplayHelp();
@@ -48,18 +67,16 @@ namespace EnglishPremierLeague
 
 				logger.LogDebug("Calling service function to get the team with lowest difference");
 				var team = teamStandingsService.GetTeamWithLowDifferenceInGoals();
-				Console.WriteLine("\n The team with the least difference between for and against goals is: {0}", team.TeamName);
-				Environment.Exit(0);
+
+				return team.TeamName;
+				
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				Console.WriteLine("Exception thrown: {0}", ex.StackTrace);
+				throw;
 			}
+		}
 
-		} 
-		#endregion
-
-		#region Private static functions
 		/// <summary>
 		/// Gets the service provider based on the input arguments.
 		/// </summary>

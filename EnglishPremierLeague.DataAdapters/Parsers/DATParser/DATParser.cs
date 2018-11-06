@@ -30,6 +30,9 @@ namespace EnglishPremierLeague.Data.Parsers.DATParser
 				if (_datValidator.Validate(rowData, headerRow, out team))
 					return team;
 
+				if (headerRow)
+					throw new System.Exception("Columns do not match the template");
+
 				return null;
 			}
 			catch (System.Exception)

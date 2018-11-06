@@ -39,6 +39,11 @@ namespace EnglishPremierLeague.Data.Adapters.CSVAdapter
 					throw new FileNotFoundException();
 				}
 
+				if (new FileInfo(_fileDetails.FilePath).Length == 0)
+				{
+					_logger.LogDebug("Checking for File contents");
+					throw new System.Exception("File is Empty");
+				}
 
 				_logger.LogDebug("Reading the CSV file");
 				using (TextReader csvReader = new StreamReader(_fileDetails.FilePath))
